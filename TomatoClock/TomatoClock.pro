@@ -1,6 +1,6 @@
 #-------------------------------------------------
 #
-# Project created by QtCreator 2018-07-04T17:55:01
+# Project created by QtCreator 2018-07-05T22:43:08
 #
 #-------------------------------------------------
 
@@ -24,26 +24,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 
 SOURCES += \
-    main.cpp \
-    completed.cpp \
-    clock.cpp \
-    settings.cpp \
-    mainwindow.cpp \
+        main.cpp \
+        tomatoclock.cpp \
     addtasks.cpp \
     managetasks.cpp
 
 HEADERS += \
-    completed.h \
-    clock.h \
-    settings.h \
-    mainwindow.h \
+        tomatoclock.h \
     addtasks.h \
     managetasks.h
 
 FORMS += \
-    completed.ui \
-    clock.ui \
-    settings.ui \
-    mainwindow.ui \
+        tomatoclock.ui \
     addtasks.ui \
     managetasks.ui

@@ -4,28 +4,19 @@
 #include <QDialog>
 
 namespace Ui {
-class ManageTasks;
+class managetasks;
 }
 
-class ManageTasks : public QDialog
+class managetasks : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit ManageTasks(QWidget *parent = 0);
-    ~ManageTasks();
-
-private slots:
-    void on_pushButton_clicked();
-
-    void on_pushButton_2_clicked();
-
-    void on_pushButton_3_clicked();
-
-    void on_pushButton_4_clicked();
+    explicit managetasks(QWidget *parent = 0);
+    ~managetasks();
 
 private:
-    Ui::ManageTasks *ui;
+    Ui::managetasks *ui;
 };
 
 #endif // MANAGETASKS_H
