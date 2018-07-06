@@ -25,11 +25,19 @@ private slots:
 
     void on_Start_clicked();
 
-    void myslot();
+    void myslot1();
+    void myslot2();
+    void myslot3();
+
+    void on_Stop_clicked();
+
+    void on_Finish_clicked();
 
 private:
     Ui::TomatoClock *ui;
-    QTimer *timer;
+    QTimer *timer1;
+    QTimer *timer2;
+    QTimer *timer3;
 };
 
 #endif // TOMATOCLOCK_H
