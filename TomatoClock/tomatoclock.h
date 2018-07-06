@@ -16,12 +16,20 @@ public:
     ~TomatoClock();
 
 private slots:
-    void on_pushButton_clicked();
 
-    void on_pushButton_2_clicked();
+    void on_Add_clicked();
+
+    void on_Manage_clicked();
+
+    void on_Done_clicked();
+
+    void on_Start_clicked();
+
+    void myslot();
 
 private:
     Ui::TomatoClock *ui;
+    QTimer *timer;
 };
 
 #endif // TOMATOCLOCK_H
