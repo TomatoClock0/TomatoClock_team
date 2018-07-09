@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui sql
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -38,3 +38,4 @@ FORMS += \
         tomatoclock.ui \
     addtasks.ui \
     managetasks.ui
+INCLUDEPATH +="C:\Qt\5.11.1\msvc2017_64\include\QtSql"

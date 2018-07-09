@@ -14,6 +14,12 @@ class managetasks : public QDialog
 public:
     explicit managetasks(QWidget *parent = 0);
     ~managetasks();
+    void myShow();
+
+private slots:
+    //void on_pushButton_clicked();
+
+    void on_m_Cancel_clicked();
 
 private:
     Ui::managetasks *ui;
