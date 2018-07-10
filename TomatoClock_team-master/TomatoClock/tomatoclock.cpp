@@ -2,7 +2,8 @@
 #include "ui_tomatoclock.h"
 #include "addtasks.h"
 #include "managetasks.h"
-#include "qstring.h"
+#include "susp_frame.h"
+
 #include <QTimer>
 #include <QMessageBox>
 #include <QtCore>
@@ -10,6 +11,20 @@
 #include <QString>
 #include <QDebug>
 #include <QStandardItemModel>
+#include <vector>
+#include <string>
+#include <fstream>
+#include <QTextStream>
+#include <iostream>
+#include <QFile>
+#include <QSystemTrayIcon>
+#include <QMenu>
+#include <QAction>
+
+
+using namespace std;
+
+
 
 
 TomatoClock::TomatoClock(QWidget *parent) :
@@ -18,6 +33,7 @@ ui(new Ui::TomatoClock)
 {
     ui->setupUi(this);
     ui->tabWidget->setCurrentWidget(ui->Todolist);
+    ui->tabWidget->tabBar()->setStyle(new CustomTabStyle);
 
     timer1 = new QTimer(this);
     connect(timer1, SIGNAL(timeout()), this, SLOT(myslot1()));
@@ -29,7 +45,7 @@ ui(new Ui::TomatoClock)
     connect(add_tasks,SIGNAL(inputCompleted()),this,SLOT(showslot()));
     manage_tasks=new managetasks;
     connect(manage_tasks,SIGNAL(manage_delete_com()),this,SLOT(showslot()));
-    connect(manage_tasks,SIGNAL(manage_clear_com()),this,SLOT(showslot()));
+
 
 
     ui->Start->setStyleSheet(tr("background-image: url(images/plays.jpg);"));
@@ -54,11 +70,67 @@ ui(new Ui::TomatoClock)
     ui->tasksdetail->setFont(QFont("Timers",20,QFont::Bold));
     new_Table();
     tasks_Show();
+    readData();
 }
 
 TomatoClock::~TomatoClock()
 {
     delete ui;
+}
+
+
+
+//record the working time and the relaxing time in profile
+void TomatoClock::readData()
+{
+std::ifstream fin;
+fin.open("works.txt",ifstream::in);
+int work[2];
+if(fin.fail())
+{
+    std::cout<<"File  open  error!";
+}
+else{
+    int i=0;
+    while(fin>>work[i]){
+       cout<<work[i];
+       i++;
+    }
+}
+fin.close();
+workTime=work[0];
+relaxTime=work[1];
+worktimeStr = QString("%1").arg(work[0]);
+relaxtimeStr = QString("%1").arg(work[1]);
+ ui->work_time->setText(worktimeStr);
+ ui->relax_time->setText(relaxtimeStr);
+}
+void TomatoClock::writeData()
+{
+    qDebug()<<worktimeStr;
+    qDebug()<<relaxtimeStr;
+    int changetime[2];
+     changetime[1]=relaxtimeStr.toInt();
+     changetime[0] = worktimeStr.toInt();
+    ofstream fout;
+    fout.open("works.txt",ofstream::out);
+    int i=0;
+    while(i<2){
+        fout<<changetime[i]<<endl;
+        i++;
+    }
+
+    fout.close();
+}
+void TomatoClock::on_work_time_editingFinished()
+{
+    QTextStream cout(stdout,QIODevice::WriteOnly);
+    worktimeStr=ui->work_time->text();
+}
+void TomatoClock::on_relax_time_editingFinished()
+{
+    QTextStream cout(stdout,QIODevice::WriteOnly);
+    relaxtimeStr=ui->relax_time->text();
 }
 
 
@@ -82,6 +154,24 @@ void TomatoClock::on_Done_clicked()
     const int r=ui->relax_time->text().toInt();
     workTime = w ;
     relaxTime = r ;
+    if(w>60 || w < 10)
+    {
+        QMessageBox message(QMessageBox::NoIcon,"TomatoClock","the working time is between 10~60");
+        message.setIconPixmap(QPixmap("iccccon.PNG"));
+        message.exec();
+        ui->work_time->setText("");
+    }
+    else if(r>30||r<5)
+    {
+        QMessageBox message(QMessageBox::NoIcon,"TomatoClock","the relaxing time is between 5~30");
+        message.setIconPixmap(QPixmap("iccccon.PNG"));
+        message.exec();
+        ui->relax_time->setText("");
+    }
+    else
+    {
+        writeData();
+    }
 }
 
 
@@ -157,6 +247,8 @@ void TomatoClock::on_Finish_clicked()
     message.setIconPixmap(QPixmap("iccccon.PNG"));
     message.exec();
     search();
+    ui->minute_clock->display(0);
+    ui->second_clock->display(0);
     ui->tabWidget->setCurrentWidget(ui->Todolist);
 }
 
@@ -274,3 +366,113 @@ void TomatoClock::on_completedlabel_clicked(const QModelIndex &index)
 {
     completed_tasks_name=index.data().toString();
 }
+
+
+// ******************the suspension frame************************
+void TomatoClock::on_pushButton_clicked()
+{
+    susp_frame *frame = new susp_frame;
+    frame->move(1000,800);
+    frame->show();
+    this->hide();
+}
+
+//********************the min frame****************
+void TomatoClock::on_pushButton_2_clicked()
+{
+    //隐藏程序主窗口
+    this->hide();
+    //新建QSystemTrayIcon对象
+    mSysTrayIcon = new QSystemTrayIcon(this);
+    //新建托盘要显示的icon
+    QIcon icon = QIcon("./7.png");
+    //将icon设到QSystemTrayIcon对象中
+    mSysTrayIcon->setIcon(icon);
+    //当鼠标移动到托盘上的图标时，会显示此处设置的内容
+    mSysTrayIcon->setToolTip(QObject::trUtf8("TomatoClock"));
+    connect(mSysTrayIcon,SIGNAL(activated(QSystemTrayIcon::ActivationReason)),
+            this,SLOT(on_activatedSysTrayIcon(QSystemTrayIcon::ActivationReason)));
+    //在系统托盘显示此对象
+    //建立托盘操作的菜单
+    createActions();
+    createMenu();
+
+    mSysTrayIcon->show();
+}
+
+
+void TomatoClock::on_activatedSysTrayIcon(QSystemTrayIcon::ActivationReason reason)
+{
+    switch(reason){
+    case QSystemTrayIcon::Trigger:
+        mSysTrayIcon->hide();
+        this->show();
+        break;
+    case QSystemTrayIcon::DoubleClick:
+        mSysTrayIcon->hide();
+        this->show();
+        break;
+    default:
+        break;
+    }
+}
+
+
+void TomatoClock::createActions()
+{
+    mShowMainAction = new QAction(QObject::trUtf8("ShowMenu"),this);
+    connect(mShowMainAction,SIGNAL(triggered()),this,SLOT(on_showMainAction()));
+
+    mExitAppAction = new QAction(QObject::trUtf8("Exit"),this);
+    connect(mExitAppAction,SIGNAL(triggered()),this,SLOT(on_exitAppAction()));
+
+    mStopAction = new QAction(QObject::trUtf8("Stop"),this);
+    connect(mStopAction,SIGNAL(triggered()),this,SLOT(on_stopAction()));
+
+    mFinishAction = new QAction(QObject::trUtf8("Finsih"),this);
+    connect(mFinishAction,SIGNAL(triggered()),this,SLOT(on_finishAction()));
+
+}
+
+void TomatoClock::createMenu()
+{
+    mMenu = new QMenu(this);
+
+    mMenu->addAction(mStopAction);
+
+    mMenu->addSeparator();
+
+    mMenu->addAction(mFinishAction);
+
+    mMenu->addSeparator();
+
+    mMenu->addAction(mShowMainAction);
+
+    mMenu->addSeparator();
+
+    mMenu->addAction(mExitAppAction);
+
+    mSysTrayIcon->setContextMenu(mMenu);
+}
+
+void TomatoClock::on_showMainAction()
+{
+    this->show();
+}
+
+void TomatoClock::on_exitAppAction()
+{
+    exit(0);
+}
+
+void TomatoClock::on_stopAction()
+{
+    this->on_Stop_clicked();
+}
+
+void TomatoClock::on_finishAction()
+{
+    this->show();
+    this->on_Finish_clicked();
+}
+

@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_managetasks_t {
-    QByteArrayData data[11];
-    char stringdata0[162];
+    QByteArrayData data[10];
+    char stringdata0[145];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -34,21 +34,19 @@ static const qt_meta_stringdata_managetasks_t qt_meta_stringdata_managetasks = {
 QT_MOC_LITERAL(0, 0, 11), // "managetasks"
 QT_MOC_LITERAL(1, 12, 17), // "manage_delete_com"
 QT_MOC_LITERAL(2, 30, 0), // ""
-QT_MOC_LITERAL(3, 31, 16), // "manage_clear_com"
-QT_MOC_LITERAL(4, 48, 19), // "on_m_Cancel_clicked"
-QT_MOC_LITERAL(5, 68, 19), // "on_m_delete_clicked"
-QT_MOC_LITERAL(6, 88, 20), // "on_tableView_clicked"
-QT_MOC_LITERAL(7, 109, 11), // "QModelIndex"
-QT_MOC_LITERAL(8, 121, 5), // "index"
-QT_MOC_LITERAL(9, 127, 18), // "on_m_clear_clicked"
-QT_MOC_LITERAL(10, 146, 15) // "on_m_OK_clicked"
+QT_MOC_LITERAL(3, 31, 19), // "on_m_Cancel_clicked"
+QT_MOC_LITERAL(4, 51, 19), // "on_m_delete_clicked"
+QT_MOC_LITERAL(5, 71, 20), // "on_tableView_clicked"
+QT_MOC_LITERAL(6, 92, 11), // "QModelIndex"
+QT_MOC_LITERAL(7, 104, 5), // "index"
+QT_MOC_LITERAL(8, 110, 18), // "on_m_clear_clicked"
+QT_MOC_LITERAL(9, 129, 15) // "on_m_OK_clicked"
 
     },
     "managetasks\0manage_delete_com\0\0"
-    "manage_clear_com\0on_m_Cancel_clicked\0"
-    "on_m_delete_clicked\0on_tableView_clicked\0"
-    "QModelIndex\0index\0on_m_clear_clicked\0"
-    "on_m_OK_clicked"
+    "on_m_Cancel_clicked\0on_m_delete_clicked\0"
+    "on_tableView_clicked\0QModelIndex\0index\0"
+    "on_m_clear_clicked\0on_m_OK_clicked"
 };
 #undef QT_MOC_LITERAL
 
@@ -58,32 +56,30 @@ static const uint qt_meta_data_managetasks[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       7,   14, // methods
+       6,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
        0,       // flags
-       2,       // signalCount
+       1,       // signalCount
 
  // signals: name, argc, parameters, tag, flags
-       1,    0,   49,    2, 0x06 /* Public */,
-       3,    0,   50,    2, 0x06 /* Public */,
+       1,    0,   44,    2, 0x06 /* Public */,
 
  // slots: name, argc, parameters, tag, flags
-       4,    0,   51,    2, 0x08 /* Private */,
-       5,    0,   52,    2, 0x08 /* Private */,
-       6,    1,   53,    2, 0x08 /* Private */,
-       9,    0,   56,    2, 0x08 /* Private */,
-      10,    0,   57,    2, 0x08 /* Private */,
+       3,    0,   45,    2, 0x08 /* Private */,
+       4,    0,   46,    2, 0x08 /* Private */,
+       5,    1,   47,    2, 0x08 /* Private */,
+       8,    0,   50,    2, 0x08 /* Private */,
+       9,    0,   51,    2, 0x08 /* Private */,
 
  // signals: parameters
-    QMetaType::Void,
     QMetaType::Void,
 
  // slots: parameters
     QMetaType::Void,
     QMetaType::Void,
-    QMetaType::Void, 0x80000000 | 7,    8,
+    QMetaType::Void, 0x80000000 | 6,    7,
     QMetaType::Void,
     QMetaType::Void,
 
@@ -97,12 +93,11 @@ void managetasks::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
         Q_UNUSED(_t)
         switch (_id) {
         case 0: _t->manage_delete_com(); break;
-        case 1: _t->manage_clear_com(); break;
-        case 2: _t->on_m_Cancel_clicked(); break;
-        case 3: _t->on_m_delete_clicked(); break;
-        case 4: _t->on_tableView_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
-        case 5: _t->on_m_clear_clicked(); break;
-        case 6: _t->on_m_OK_clicked(); break;
+        case 1: _t->on_m_Cancel_clicked(); break;
+        case 2: _t->on_m_delete_clicked(); break;
+        case 3: _t->on_tableView_clicked((*reinterpret_cast< const QModelIndex(*)>(_a[1]))); break;
+        case 4: _t->on_m_clear_clicked(); break;
+        case 5: _t->on_m_OK_clicked(); break;
         default: ;
         }
     } else if (_c == QMetaObject::IndexOfMethod) {
@@ -111,13 +106,6 @@ void managetasks::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id,
             using _t = void (managetasks::*)();
             if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&managetasks::manage_delete_com)) {
                 *result = 0;
-                return;
-            }
-        }
-        {
-            using _t = void (managetasks::*)();
-            if (*reinterpret_cast<_t *>(_a[1]) == static_cast<_t>(&managetasks::manage_clear_com)) {
-                *result = 1;
                 return;
             }
         }
@@ -149,13 +137,13 @@ int managetasks::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 7)
+        if (_id < 6)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 7;
+        _id -= 6;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 7)
+        if (_id < 6)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 7;
+        _id -= 6;
     }
     return _id;
 }
@@ -164,12 +152,6 @@ int managetasks::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 void managetasks::manage_delete_com()
 {
     QMetaObject::activate(this, &staticMetaObject, 0, nullptr);
-}
-
-// SIGNAL 1
-void managetasks::manage_clear_com()
-{
-    QMetaObject::activate(this, &staticMetaObject, 1, nullptr);
 }
 QT_WARNING_POP
 QT_END_MOC_NAMESPACE

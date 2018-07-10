@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1007</width>
-    <height>629</height>
+    <width>1100</width>
+    <height>630</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
      <rect>
       <x>50</x>
       <y>30</y>
-      <width>901</width>
+      <width>981</width>
       <height>501</height>
      </rect>
     </property>
@@ -43,10 +43,10 @@
      <enum>QTabWidget::West</enum>
     </property>
     <property name="tabShape">
-     <enum>QTabWidget::Triangular</enum>
+     <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>1</number>
+     <number>0</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -99,6 +99,32 @@
         <width>601</width>
         <height>192</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton">
+      <property name="geometry">
+       <rect>
+        <x>180</x>
+        <y>430</y>
+        <width>131</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>supension frame</string>
+      </property>
+     </widget>
+     <widget class="QPushButton" name="pushButton_2">
+      <property name="geometry">
+       <rect>
+        <x>472</x>
+        <y>430</y>
+        <width>111</width>
+        <height>28</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>min frame</string>
       </property>
      </widget>
     </widget>

@@ -27,15 +27,21 @@ SOURCES += \
         main.cpp \
         tomatoclock.cpp \
     addtasks.cpp \
-    managetasks.cpp
+    managetasks.cpp \
+    susp_frame.cpp \
+    min_form.cpp
 
 HEADERS += \
         tomatoclock.h \
     addtasks.h \
-    managetasks.h
+    managetasks.h \
+    susp_frame.h \
+    min_form.h
 
 FORMS += \
         tomatoclock.ui \
     addtasks.ui \
-    managetasks.ui
+    managetasks.ui \
+    susp_frame.ui \
+    min_form.ui
 INCLUDEPATH +="C:\Qt\5.11.1\msvc2017_64\include\QtSql"

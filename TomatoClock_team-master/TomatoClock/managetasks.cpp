@@ -86,8 +86,8 @@ void managetasks::on_m_clear_clicked()
         model->removeRows(0,model->rowCount());
     }
     QSqlQuery query;
-    emit manage_clear_com();
     query.exec(QString("delete from information where conditions = 1 or conditions = 0"));
+    emit manage_delete_com();
     QMessageBox message(QMessageBox::NoIcon,"TomatoClock","Cleared!");
     message.setIconPixmap(QPixmap("iccccon.PNG"));
     message.exec();

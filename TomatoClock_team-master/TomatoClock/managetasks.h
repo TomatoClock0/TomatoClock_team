@@ -21,7 +21,8 @@ signals:
     //! 自定义的信号，只需要有函数声明不需要编写函数实现
     //! const QString& inputData
     void manage_delete_com();
-    void manage_clear_com();
+
+
 
 private slots:
     //void on_pushButton_clicked();

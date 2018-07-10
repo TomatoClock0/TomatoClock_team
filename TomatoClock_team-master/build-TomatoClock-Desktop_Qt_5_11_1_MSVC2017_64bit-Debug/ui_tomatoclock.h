@@ -36,6 +36,8 @@ public:
     QPushButton *Manage;
     QTextEdit *tasksdetail;
     QTableView *addlabel;
+    QPushButton *pushButton;
+    QPushButton *pushButton_2;
     QWidget *Completed;
     QPushButton *completed_Delete;
     QPushButton *completed_Clear;
@@ -64,13 +66,13 @@ public:
     {
         if (TomatoClock->objectName().isEmpty())
             TomatoClock->setObjectName(QStringLiteral("TomatoClock"));
-        TomatoClock->resize(1007, 629);
+        TomatoClock->resize(1100, 630);
         centralWidget = new QWidget(TomatoClock);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setEnabled(true);
-        tabWidget->setGeometry(QRect(50, 30, 901, 501));
+        tabWidget->setGeometry(QRect(50, 30, 981, 501));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -82,7 +84,7 @@ public:
         font.setWeight(50);
         tabWidget->setFont(font);
         tabWidget->setTabPosition(QTabWidget::West);
-        tabWidget->setTabShape(QTabWidget::Triangular);
+        tabWidget->setTabShape(QTabWidget::Rounded);
         tabWidget->setMovable(false);
         Todolist = new QWidget();
         Todolist->setObjectName(QStringLiteral("Todolist"));
@@ -98,6 +100,12 @@ public:
         addlabel = new QTableView(Todolist);
         addlabel->setObjectName(QStringLiteral("addlabel"));
         addlabel->setGeometry(QRect(105, 40, 601, 192));
+        pushButton = new QPushButton(Todolist);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(180, 430, 131, 28));
+        pushButton_2 = new QPushButton(Todolist);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(472, 430, 111, 28));
         tabWidget->addTab(Todolist, QString());
         Completed = new QWidget();
         Completed->setObjectName(QStringLiteral("Completed"));
@@ -176,7 +184,7 @@ public:
 
         retranslateUi(TomatoClock);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(TomatoClock);
@@ -187,6 +195,8 @@ public:
         TomatoClock->setWindowTitle(QApplication::translate("TomatoClock", "TomatoClock", nullptr));
         Add->setText(QString());
         Manage->setText(QString());
+        pushButton->setText(QApplication::translate("TomatoClock", "supension frame", nullptr));
+        pushButton_2->setText(QApplication::translate("TomatoClock", "min frame", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Todolist), QApplication::translate("TomatoClock", "Todolist", nullptr));
         completed_Delete->setText(QString());
         completed_Clear->setText(QString());
