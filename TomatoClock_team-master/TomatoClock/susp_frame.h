@@ -31,11 +31,15 @@ public:
 
 public slots:
     void mouseClick();
+    void leaveFunc();
+    void enterFunc();
 
 private:
     Ui::susp_frame *ui;
 
     QTimer *timer_f;
+    QTimer *leaveTimer;
+    QTimer *enterTimer;
     int isAutoHide();
     int isHide();
     void hideWidge(int);

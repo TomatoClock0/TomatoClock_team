@@ -34,14 +34,13 @@ public:
     QWidget *Todolist;
     QPushButton *Add;
     QPushButton *Manage;
-    QTextEdit *tasksdetail;
     QTableView *addlabel;
-    QPushButton *pushButton;
-    QPushButton *pushButton_2;
     QWidget *Completed;
     QPushButton *completed_Delete;
     QPushButton *completed_Clear;
     QTableView *completedlabel;
+    QTextEdit *completed_tasksdetal;
+    QLabel *label_6;
     QWidget *Clock;
     QPushButton *Start;
     QPushButton *Stop;
@@ -59,6 +58,8 @@ public:
     QLabel *label_3;
     QLabel *label_4;
     QPushButton *Done;
+    QPushButton *pushButton_2;
+    QPushButton *pushButton;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -66,13 +67,13 @@ public:
     {
         if (TomatoClock->objectName().isEmpty())
             TomatoClock->setObjectName(QStringLiteral("TomatoClock"));
-        TomatoClock->resize(1100, 630);
+        TomatoClock->resize(979, 555);
         centralWidget = new QWidget(TomatoClock);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         tabWidget = new QTabWidget(centralWidget);
         tabWidget->setObjectName(QStringLiteral("tabWidget"));
         tabWidget->setEnabled(true);
-        tabWidget->setGeometry(QRect(50, 30, 981, 501));
+        tabWidget->setGeometry(QRect(0, 20, 980, 550));
         QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
         sizePolicy.setHorizontalStretch(0);
         sizePolicy.setVerticalStretch(0);
@@ -94,18 +95,9 @@ public:
         Manage = new QPushButton(Todolist);
         Manage->setObjectName(QStringLiteral("Manage"));
         Manage->setGeometry(QRect(760, 380, 71, 71));
-        tasksdetail = new QTextEdit(Todolist);
-        tasksdetail->setObjectName(QStringLiteral("tasksdetail"));
-        tasksdetail->setGeometry(QRect(110, 260, 591, 121));
         addlabel = new QTableView(Todolist);
         addlabel->setObjectName(QStringLiteral("addlabel"));
-        addlabel->setGeometry(QRect(105, 40, 601, 192));
-        pushButton = new QPushButton(Todolist);
-        pushButton->setObjectName(QStringLiteral("pushButton"));
-        pushButton->setGeometry(QRect(180, 430, 131, 28));
-        pushButton_2 = new QPushButton(Todolist);
-        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
-        pushButton_2->setGeometry(QRect(472, 430, 111, 28));
+        addlabel->setGeometry(QRect(130, 30, 550, 300));
         tabWidget->addTab(Todolist, QString());
         Completed = new QWidget();
         Completed->setObjectName(QStringLiteral("Completed"));
@@ -117,7 +109,13 @@ public:
         completed_Clear->setGeometry(QRect(770, 380, 71, 71));
         completedlabel = new QTableView(Completed);
         completedlabel->setObjectName(QStringLiteral("completedlabel"));
-        completedlabel->setGeometry(QRect(220, 50, 401, 192));
+        completedlabel->setGeometry(QRect(130, 20, 550, 200));
+        completed_tasksdetal = new QTextEdit(Completed);
+        completed_tasksdetal->setObjectName(QStringLiteral("completed_tasksdetal"));
+        completed_tasksdetal->setGeometry(QRect(130, 260, 550, 160));
+        label_6 = new QLabel(Completed);
+        label_6->setObjectName(QStringLiteral("label_6"));
+        label_6->setGeometry(QRect(130, 230, 72, 15));
         tabWidget->addTab(Completed, QString());
         Clock = new QWidget();
         Clock->setObjectName(QStringLiteral("Clock"));
@@ -174,6 +172,12 @@ public:
         Done->setObjectName(QStringLiteral("Done"));
         Done->setGeometry(QRect(730, 360, 71, 71));
         tabWidget->addTab(Settings, QString());
+        pushButton_2 = new QPushButton(centralWidget);
+        pushButton_2->setObjectName(QStringLiteral("pushButton_2"));
+        pushButton_2->setGeometry(QRect(930, 0, 45, 22));
+        pushButton = new QPushButton(centralWidget);
+        pushButton->setObjectName(QStringLiteral("pushButton"));
+        pushButton->setGeometry(QRect(880, 0, 45, 22));
         TomatoClock->setCentralWidget(centralWidget);
         mainToolBar = new QToolBar(TomatoClock);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -184,7 +188,7 @@ public:
 
         retranslateUi(TomatoClock);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(TomatoClock);
@@ -195,11 +199,10 @@ public:
         TomatoClock->setWindowTitle(QApplication::translate("TomatoClock", "TomatoClock", nullptr));
         Add->setText(QString());
         Manage->setText(QString());
-        pushButton->setText(QApplication::translate("TomatoClock", "supension frame", nullptr));
-        pushButton_2->setText(QApplication::translate("TomatoClock", "min frame", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Todolist), QApplication::translate("TomatoClock", "Todolist", nullptr));
         completed_Delete->setText(QString());
         completed_Clear->setText(QString());
+        label_6->setText(QApplication::translate("TomatoClock", "details:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Completed), QApplication::translate("TomatoClock", "Completed", nullptr));
         Start->setText(QString());
         Stop->setText(QString());
@@ -214,6 +217,8 @@ public:
         label_4->setText(QApplication::translate("TomatoClock", "min", nullptr));
         Done->setText(QString());
         tabWidget->setTabText(tabWidget->indexOf(Settings), QApplication::translate("TomatoClock", "Settings", nullptr));
+        pushButton_2->setText(QString());
+        pushButton->setText(QString());
     } // retranslateUi
 
 };

@@ -45,6 +45,8 @@ ui(new Ui::TomatoClock)
     connect(add_tasks,SIGNAL(inputCompleted()),this,SLOT(showslot()));
     manage_tasks=new managetasks;
     connect(manage_tasks,SIGNAL(manage_delete_com()),this,SLOT(showslot()));
+    clickTimer = new QTimer(this);
+    connect(clickTimer,SIGNAL(timeout()),this,SLOT(oneClick()));
 
 
 
@@ -67,7 +69,7 @@ ui(new Ui::TomatoClock)
     QPalette palette;
     palette.setBrush(QPalette::Text,Qt::red);
     ui->addlabel->setPalette(palette);
-    ui->tasksdetail->setFont(QFont("Timers",20,QFont::Bold));
+    //ui->tasksdetail->setFont(QFont("Timers",20,QFont::Bold));
     new_Table();
     tasks_Show();
     readData();
@@ -327,17 +329,7 @@ void TomatoClock::tasks_Show()
 }
 
 
-void TomatoClock::on_addlabel_clicked(const QModelIndex &index)
-{
-    int row = ui-> addlabel ->currentIndex().row();
-    qDebug()<<row;
-    QString str = index.data().toString();
-    qDebug()<<str;
-    ui->tabWidget->setCurrentWidget(ui->Clock);
-    ui->clock_tasksname->setText(str);
-    ui->clock_tasksid->setText(QString::number(row+1));
-    clock_status=4;
-}
+
 
 
 void TomatoClock::on_completed_Clear_clicked()
@@ -365,6 +357,26 @@ void TomatoClock::on_completed_Delete_clicked()
 void TomatoClock::on_completedlabel_clicked(const QModelIndex &index)
 {
     completed_tasks_name=index.data().toString();
+    int row = index.row();
+    qDebug()<<QString::number(row);
+    QSqlQuery query;
+    bool success = query.exec("select *from information");
+    if(success)
+    {
+        while(row>=0&&query.next())
+        {
+            if(query.value(3).toString() == '0')
+            {
+                row--;
+            }
+            if(row==-1)
+            {
+                completed_tasks_detail=query.value(2).toString();
+                qDebug()<<completed_tasks_detail;
+                ui->completed_tasksdetal->setPlainText(completed_tasks_detail);
+            }
+        }
+    }
 }
 
 
@@ -476,3 +488,41 @@ void TomatoClock::on_finishAction()
     this->on_Finish_clicked();
 }
 
+void TomatoClock::oneClick()
+{
+    clickTimer->stop();
+    int row = ui-> addlabel ->currentIndex().row();
+    qDebug()<<row;
+    QString str = model1->data(model1->index(row,0)).toString();//第row行第1列的内容
+    qDebug()<<str;
+    ui->tabWidget->setCurrentWidget(ui->Clock);
+    ui->clock_tasksname->setText(str);
+}
+
+
+void TomatoClock::on_addlabel_clicked(const QModelIndex &)
+{
+    clickTimer->start(150);
+}
+
+void TomatoClock::on_addlabel_doubleClicked(const QModelIndex &)
+{
+    clickTimer->stop();
+    int row = ui-> addlabel ->currentIndex().row();
+    QSqlQuery query;
+    bool success = query.exec("select *from information");
+    if(success)
+    {
+        while(row>=0&&query.next())
+        {
+            if(query.value(3).toString() == '1')
+                row--;
+            if(row==-1)
+            {
+                QString str=query.value(2).toString();
+                QMessageBox message(QMessageBox::NoIcon,"Detail",str);
+                message.exec();
+            }
+        }
+    }
+}

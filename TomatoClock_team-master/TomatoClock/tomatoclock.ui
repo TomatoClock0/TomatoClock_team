@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
-    <height>630</height>
+    <width>979</width>
+    <height>555</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -20,10 +20,10 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>50</x>
-      <y>30</y>
-      <width>981</width>
-      <height>501</height>
+      <x>0</x>
+      <y>20</y>
+      <width>980</width>
+      <height>550</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -46,7 +46,7 @@
      <enum>QTabWidget::Rounded</enum>
     </property>
     <property name="currentIndex">
-     <number>0</number>
+     <number>1</number>
     </property>
     <property name="movable">
      <bool>false</bool>
@@ -81,50 +81,14 @@
        <string/>
       </property>
      </widget>
-     <widget class="QTextEdit" name="tasksdetail">
-      <property name="geometry">
-       <rect>
-        <x>110</x>
-        <y>260</y>
-        <width>591</width>
-        <height>121</height>
-       </rect>
-      </property>
-     </widget>
      <widget class="QTableView" name="addlabel">
       <property name="geometry">
        <rect>
-        <x>105</x>
-        <y>40</y>
-        <width>601</width>
-        <height>192</height>
+        <x>130</x>
+        <y>30</y>
+        <width>550</width>
+        <height>300</height>
        </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>430</y>
-        <width>131</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>supension frame</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_2">
-      <property name="geometry">
-       <rect>
-        <x>472</x>
-        <y>430</y>
-        <width>111</width>
-        <height>28</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>min frame</string>
       </property>
      </widget>
     </widget>
@@ -161,11 +125,34 @@
      <widget class="QTableView" name="completedlabel">
       <property name="geometry">
        <rect>
-        <x>220</x>
-        <y>50</y>
-        <width>401</width>
-        <height>192</height>
+        <x>130</x>
+        <y>20</y>
+        <width>550</width>
+        <height>200</height>
        </rect>
+      </property>
+     </widget>
+     <widget class="QTextEdit" name="completed_tasksdetal">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>260</y>
+        <width>550</width>
+        <height>160</height>
+       </rect>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_6">
+      <property name="geometry">
+       <rect>
+        <x>130</x>
+        <y>230</y>
+        <width>72</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>details:</string>
       </property>
      </widget>
     </widget>
@@ -382,6 +369,32 @@
       </property>
      </widget>
     </widget>
+   </widget>
+   <widget class="QPushButton" name="pushButton_2">
+    <property name="geometry">
+     <rect>
+      <x>930</x>
+      <y>0</y>
+      <width>45</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="pushButton">
+    <property name="geometry">
+     <rect>
+      <x>880</x>
+      <y>0</y>
+      <width>45</width>
+      <height>22</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
    </widget>
   </widget>
   <widget class="QToolBar" name="mainToolBar">

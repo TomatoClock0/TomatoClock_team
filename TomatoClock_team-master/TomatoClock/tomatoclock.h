@@ -134,13 +134,16 @@ private slots:
 
 
 
+    void on_addlabel_doubleClicked(const QModelIndex &);
+    void oneClick();
+
 private:
     Ui::TomatoClock *ui;
 
     QTimer *timer1;
     QTimer *timer2;
     QTimer *timer3;
-
+    QTimer *clickTimer;
     QStandardItemModel *model1;
     QStandardItemModel *model2;
 
@@ -148,6 +151,7 @@ private:
     managetasks *manage_tasks;
 
     QString completed_tasks_name;
+    QString completed_tasks_detail;
 
     QSystemTrayIcon *mSysTrayIcon;
     QMenu *mMenu;

@@ -31,7 +31,11 @@ susp_frame::susp_frame(QWidget *parent) :
     deskWidth = deskWgt->width();
 
     timer_f = new QTimer(this);
+    leaveTimer = new QTimer(this);
+    enterTimer = new QTimer(this);
     connect(timer_f, SIGNAL(timeout()), this, SLOT(mouseClick()));
+    connect(leaveTimer,SIGNAL(timeout()),this,SLOT(leaveFunc()));
+    connect(enterTimer,SIGNAL(timeout()),this,SLOT(enterFunc()));
 
     setWindowFlag(Qt::WindowStaysOnTopHint);
     setWindowFlag(Qt::FramelessWindowHint);
@@ -152,23 +156,36 @@ void susp_frame::showWidge(int direction)
     animation->start();
 }
 
-void susp_frame::leaveEvent(QEvent *event)
+void susp_frame::leaveFunc()
 {
-
+    leaveTimer->stop();
     int direction = isAutoHide();
     if(direction != 0){
         hideWidge(direction);
     }
+}
 
 
+void susp_frame::enterFunc()
+{
+    enterTimer->stop();
+    int direction = isHide();
+    if (direction != 0){
+        showWidge(direction);
+    }
+}
+
+void susp_frame::leaveEvent(QEvent *event)
+{
+
+    enterTimer->stop();
+    leaveTimer->start(101);
 
 }
 
 void susp_frame::enterEvent(QEvent *event)
 {
-    int direction = isHide();
-    if (direction != 0){
-        showWidge(direction);
-    }
+    leaveTimer->stop();
+    enterTimer->start(101);
 
 }
